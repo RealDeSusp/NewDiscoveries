@@ -57,7 +57,7 @@ python task_1.py
 ```bash
 python manage.py runserver
 ```
-Перейти по адресу: http://127.0.0.1:8000/core/objects/.
+Перейти по адресу: `http://127.0.0.1:8000/core/objects/`.
 
 3. Результат выполнения задания 3 находится в файле `task_3.py`. Запуск:
 ```bash

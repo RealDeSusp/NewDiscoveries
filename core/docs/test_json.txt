@@ -1,0 +1,30 @@
+{
+    "document1": {
+        "2": {
+            "parents": {}
+        },
+        "3": {
+            "parents": {}
+        }
+    },
+    "document2": {
+        "9": {
+            "parents": {
+                "document1": [
+                    "2",
+                    "3"
+                ]
+            }
+        }
+    },
+    "document3": {
+        "4": {
+            "parents": {
+                "document2": [
+                    "9"
+                ]
+            }
+        }
+    },
+    "document4": {}
+}

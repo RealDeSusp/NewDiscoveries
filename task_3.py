@@ -22,11 +22,9 @@ def remove_parent_references(
     data: dict[str, Any],
     parent_document: str,
     parent_version: str,
-) -> list[tuple[str, str]]:
-    versions_to_delete = []
-
-    for document_name, versions in data.items():
-        for version_number, version_data in versions.items():
+) -> None:
+    for versions in data.values():
+        for version_data in versions.values():
             parents = version_data.get("parents", {})
 
             if parent_document not in parents:
@@ -37,11 +35,6 @@ def remove_parent_references(
 
             if not parents[parent_document]:
                 del parents[parent_document]
-
-            if not parents:
-                versions_to_delete.append((document_name, version_number))
-
-    return versions_to_delete
 
 
 def delete_version(
@@ -57,14 +50,11 @@ def delete_version(
 
     del data[document_name][version_number]
 
-    child_versions = remove_parent_references(
+    remove_parent_references(
         data=data,
         parent_document=document_name,
         parent_version=version_number,
     )
-
-    for child_document, child_version in child_versions:
-        delete_version(data, child_document, child_version)
 
 
 def main() -> None:
